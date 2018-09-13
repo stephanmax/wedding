@@ -11,7 +11,9 @@
     document.documentElement.className = 'loading';
 
     window.addEventListener('load', function showPage() {
+      var watercolorImg = document.getElementById('watercolor');
       document.documentElement.className = document.documentElement.className.replace('loading', '');
+      watercolorImg.outerHTML = watercolorImg.outerHTML;
     }, false);
   </script>
 
@@ -27,7 +29,7 @@
       padding: 0;
       position: relative;
     }
-    img {
+    #watercolor {
       display: block;
       object-fit: cover;
       position: fixed;
@@ -36,7 +38,7 @@
 
       animation: fadein 4s;
     }
-    .loading img {
+    .loading #watercolor {
       animation-play-state: paused !important;
     }
     section {
@@ -119,7 +121,7 @@
     <p>L&auml;dt...</p>
   </section>
 
-  <img srcset="bg-xs.png 480w, bg-sm.png 800w, bg-md.png 1280w, bg-lg.png 1920w" src="bg-md.png">
+  <img id="watercolor" srcset="bg-xs.png 480w, bg-sm.png 800w, bg-md.png 1280w, bg-lg.png 1920w" src="bg-md.png">
   
   <section>
     <header>
