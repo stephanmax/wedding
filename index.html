@@ -115,13 +115,20 @@
       color: #FF886D !important;
     }
     .spinner {
+      background-color: #fff;
       display: none;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1200;
     }
     .spinner p {
       color: #000;
+      margin-top: 6em;
+      text-align: center;
     }
     .loading .spinner {
-      display: flex;
+      display: block;
     }
     .navbar.is-transparent {
       background-color: transparent;
@@ -143,9 +150,9 @@
   </style>
 </head>
 <body>
-  <section class="spinner">
+  <div class="spinner">
     <p>L&auml;dt...</p>
-  </section>
+  </div>
 
   <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -315,7 +322,7 @@
   <section class="section">
     <div class="container">
       <h1 id="anreise" class="title is-1">Anreise/&Uuml;bernachtung</h1>
-      <div class="columns">
+      <div class="columns is-variable is-6">
         <div class="column">
           <div id="map"></div>
         </div>
