@@ -240,7 +240,7 @@
                 </div>
             
                 <div class="content">
-                  Ursulinenkirche K&ouml;n
+                  Ursulinenkirche K&ouml;ln
                   <br>
                   <br>
                   <time datetime="2019-09-07">7. September, 16 Uhr</time>
@@ -280,7 +280,7 @@
       <h1 id="polterabend" class="title is-1">Polterabend</h1>
       <div class="columns is-centered">
         <div class="column is-half">
-          <p>Der Polterabend wird eine lockere Gartenparty ohne Schnick-Schnack. Für K&ouml;lsch und S&uuml;ppchen ist gesorgt. Wenn ihr etwas zum Buffet beitragen wollt, freuen wir uns sehr. Bringt gerne auch geeignetes Poltermaterial mit&mdash;unsere Nachbarn sind gewarnt.</p>
+          <p>Der Polterabend wird eine lockere Gartenparty ohne Schnick-Schnack. Für K&ouml;lsch und Snacks ist gesorgt. Wenn ihr etwas zum Buffet beitragen wollt, freuen wir uns sehr. Bringt gerne auch geeignetes Poltermaterial mit&mdash;unsere Nachbarn sind gewarnt.</p>
           <blockquote>
             Gepoltert wird nach alter Sitte<br>
             darum kommt hier unsere Bitte:<br>
@@ -382,7 +382,7 @@
       <div class="columns is-centered">
         <div class="column is-half">
           <div class="content">
-            <p>Bitte meldet euch bis zum <b>14. M&auml;rz</b> zur&uuml;ck. Wir freuen uns sehr auf euch!</p>
+            <p>Bitte meldet euch bis zum <b>15. M&auml;rz</b> zur&uuml;ck. Wir freuen uns sehr auf euch!</p>
             <form>
               <div class="field">
                 <label class="label">Name(n)</label>
@@ -485,12 +485,13 @@
       });
     });
 
-    var layer = new L.StamenTileLayer('toner');
     var map = new L.Map('map', {
       center: new L.LatLng(50.9463472, 6.9581229),
       zoom: 11
     });
-    map.addLayer(layer);
+    var tiles = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png');
+    tiles.addTo(map);
+    
     var polterabend = L.marker([50.943953, 7.085127]).addTo(map);
     var trauung = L.marker([50.946567, 6.960333]).addTo(map);
     var feier = L.marker([50.931662, 6.858133]).addTo(map);
