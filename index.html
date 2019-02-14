@@ -383,32 +383,38 @@
         <div class="column is-half">
           <div class="content">
             <p>Bitte meldet euch bis zum <b>15. M&auml;rz</b> zur&uuml;ck. Wir freuen uns sehr auf euch!</p>
-            <form>
+            <form name="rsvp" method="POST" data-netlify="true">
               <div class="field">
                 <label class="label">Name(n)</label>
                 <div class="control">
-                  <input class="input" type="text">
+                  <input class="input" type="text" name="name">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input" type="email" name="email">
                 </div>
               </div>
               <div class="field">
                 <div class="control">
                   <label class="checkbox">
-                    <input type="checkbox"> Dabei beim Polterabend
+                    <input type="checkbox" name="rsvp[]" value="polterabend"> Dabei beim Polterabend
                   </label>
                 </div>
                 <div class="control">
                   <label class="checkbox">
-                    <input type="checkbox"> Dabei bei der Trauung
+                    <input type="checkbox" name="rsvp[]" value="trauung"> Dabei bei der Trauung
                   </label>
                 </div>
                 <div class="control">
                   <label class="checkbox">
-                    <input type="checkbox"> Dabei bei der Feier
+                    <input type="checkbox" name="rsvp[]" value="feier"> Dabei bei der Feier
                   </label>
                 </div>
                 <div class="control">
                     <label class="checkbox">
-                      <input id="absage" type="checkbox" data-target="puppy""> Ich muss leider absagen
+                      <input id="absage" type="checkbox" name="rsvp[]" value="absage" data-target="puppy"> Ich muss leider absagen
                     </label>
                   </div>
               </div>
@@ -417,9 +423,9 @@
                 <label class="label">Fahrt von Trauung zur Feier</label>
                 <div class="control">
                   <div class="select">
-                    <select>
-                      <option>Die coole Variante mit Katharina &amp; Stephan</option>
-                      <option>Meine/unsere wahrscheinlich nicht ganz so coole Variante</option>
+                    <select name="fahrt">
+                      <option value="cool">Die coole Variante mit Katharina &amp; Stephan</option>
+                      <option value="uncool">Meine/unsere wahrscheinlich nicht ganz so coole Variante</option>
                     </select>
                   </div>
                 </div>
@@ -427,20 +433,25 @@
               <div class="field">
                 <div class="control">
                   <label class="checkbox">
-                    <input type="checkbox"> Ich/wir bringe(n) Kinder mit
+                    <input type="checkbox" name="kinder" value="ja"> Ich/wir bringe(n) Kinder mit
                   </label>
                 </div>
               </div>
               <div class="field">
                 <label class="label">Kommentare (z.B. VeganerIn, ich w&uuml;rde gern bei K&ouml;lnerInnen unterkommen, ich kann G&auml;ste aufnehmen, etc.)</label>
                 <div class="control">
-                  <textarea class="textarea"></textarea>
+                  <textarea class="textarea" name="kommentare"></textarea>
                 </div>
               </div>
               <div class="field">
                 <label class="label">Das Lied das mich jedes Mal auf die Tanzfl&auml;che bringt</label>
                 <div class="control">
-                  <input class="input" type="text">
+                  <input class="input" type="text" name="lied">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <button class="button is-warning" type="submit">RSVP</button>
                 </div>
               </div>
             </form>
