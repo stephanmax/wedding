@@ -17,7 +17,9 @@
     }, false);
   </script>
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
 
   <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
@@ -33,6 +35,8 @@
       display: block;
       object-fit: cover;
       position: fixed;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
 
@@ -41,18 +45,13 @@
     .loading #watercolor {
       animation-play-state: paused !important;
     }
-    section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
     header {
       border: 5px solid currentColor;
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 auto;
       padding: 2vmin;
       width: 46vmin;
       height: 46vmin;
@@ -63,6 +62,7 @@
       line-height: 1;
       margin: 0;
       text-align: center;
+      z-index: 10;
     }
     .amp {
       font-family: 'Playfair Display', serif;
@@ -80,13 +80,16 @@
         opacity: 1;
       }
     }
-    p {
-      color: #fff;
+    blockquote {
+      font-style: italic;
+      text-align: center;
+      margin: 1.5em 0;
+    }
+    blockquote,
+    p,
+    li {
       font-size: 1.5em;
       line-height: 1.5;
-      margin: 0;
-      text-align: center;
-      z-index: 10;
     }
     p span {
       font-family: 'Playfair Display', serif;
@@ -94,16 +97,22 @@
       font-size: 15vmin;
       font-weight: normal;
     }
+    p + p {
+      margin-top: 1.5em;
+    }
     time {
       font-weight: bold;
     }
-    a {
-      color: #fff;
+    li > a,
+    p > a {
+      background: rgba(255, 255, 255, .6);
+      color: #333;
+      padding: 0 .2em;
       text-decoration: none;
-      border-bottom: 4px #fff double;
+      transition: color .3s;
     }
     a:hover {
-      color: yellow;
+      color: #FF886D !important;
     }
     .spinner {
       display: none;
@@ -114,6 +123,23 @@
     .loading .spinner {
       display: flex;
     }
+    .navbar.is-transparent {
+      background-color: transparent;
+      background-image: none;
+    }
+    .title.is-1 {
+      color: #fff;
+      margin-bottom: 3rem;
+    }
+    #map {
+      height: 480px;
+    }
+    .is-hidden {
+      display: none;
+    }
+    #puppy {
+      width: 100%;
+    }
   </style>
 </head>
 <body>
@@ -121,35 +147,349 @@
     <p>L&auml;dt...</p>
   </section>
 
+  <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/"><img src="favicon-32x32.png" width="32" height="32" title="Katharina &amp; Stephan"></a>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNav">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="mainNav" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="#eckdaten">Eckdaten</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link is-arrowless">Hochzeit</a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="#polterabend">Polterabend</a>
+            <a class="navbar-item" href="#trauung">Trauung</a>
+            <a class="navbar-item" href="#feier">Feier</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="#anreise">Anreise/&Uuml;bernachtung</a>
+        <a class="navbar-item" href="#geschenke">Geschenke</a>
+        <a class="navbar-item" href="#rsvp">RSVP</a>
+      </div>
+    </div>
+  </nav>
+
   <img id="watercolor" srcset="bg-xs.png 480w, bg-sm.png 800w, bg-md.png 1280w, bg-lg.png 1920w" src="bg-md.png">
   
-  <section>
-    <header>
-      <h1>
-        <span class="katharina">Katharina</span><br />
-        <span class="amp">&amp;</span><br />
-        <span class="stephan">Stephan</span>
-      </h1>
-    </header>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <header>
+          <h1>
+            <span class="katharina">Katharina</span><br />
+            <span class="amp">&amp;</span><br />
+            <span class="stephan">Stephan</span>
+          </h1>
+        </header>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <p>
-      <span>Wir heiraten!</span><br />
-      <time>7. September 2019</time><br />
-      <br />
-      <br />
-      <br />
-      Trauung: <a href="https://schule.erzbistum-koeln.de/ursulinenschule_koeln/gymnasium/Kirchen/Fronleichnamskirche_Panorama/Fronleichnamskirche.html">Ursulinenkirche K&ouml;ln</a><br />
-      Feier: <a href="https://www.kastanienhof-koeln.de/raeume/stiftungssaal/">Kastanienhof K&ouml;ln</a>
-    </p>
+  <section class="section">
+      <div class="container">
+        <h1 id="eckdaten" class="title is-1">Eckdaten</h1>
+        <div class="columns is-variable is-6">
+          <div class="column">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="https://bulma.io/images/placeholders/1280x960.png">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">Polterabend</p>
+                  </div>
+                </div>
+            
+                <div class="content">
+                  Fasanenweg 2, K&ouml;ln-Br&uuml;ck
+                  <br>
+                  <br>
+                  <time datetime="2019-08-17">17. August 2019, ab 18 Uhr</time>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="https://bulma.io/images/placeholders/1280x960.png">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">Trauung</p>
+                  </div>
+                </div>
+            
+                <div class="content">
+                  Ursulinenkirche K&ouml;n
+                  <br>
+                  <br>
+                  <time datetime="2019-09-07">7. September, 16 Uhr</time>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="https://bulma.io/images/placeholders/1280x960.png">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">Feier</p>
+                  </div>
+                </div>
+            
+                <div class="content">
+                  Kastanienhof K&ouml;ln
+                  <br>
+                  <br>
+                  <time datetime="2016-09-07">7. September, im Anschluss</time>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <section class="section">
+    <div class="container">
+      <h1 id="polterabend" class="title is-1">Polterabend</h1>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <p>Der Polterabend wird eine lockere Gartenparty ohne Schnick-Schnack. Für K&ouml;lsch und S&uuml;ppchen ist gesorgt. Wenn ihr etwas zum Buffet beitragen wollt, freuen wir uns sehr. Bringt gerne auch geeignetes Poltermaterial mit&mdash;unsere Nachbarn sind gewarnt.</p>
+          <blockquote>
+            Gepoltert wird nach alter Sitte<br>
+            darum kommt hier unsere Bitte:<br>
+            Lasst Papier und Müll zurück<br>
+            denn nur Scherben bringen Glück!
+          </blockquote>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <p>
-      Details folgen in K&uuml;rze
-    </p>
+  <section class="section">
+    <div class="container">
+      <h1 id="trauung" class="title is-1">Kirchliche Trauung</h1>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <p>Die kirchliche Trauung findet in der Kapelle von Katharinas ehemaliger Schule statt. Ist es euch wichtig zu sitzen, empfehlen wir fr&uuml;h zu kommen.</p>
+          <p>Die Kirche befindet sich in der K&ouml;lner Innenstadt und ist keine 10 Minuten vom Hauptbahnhof entfernt. Wir empfehlen mit &ouml;ffentlichen Verkehrsmitteln anzureisen. Für den Transport von der Kirche zur Feier ist gesorgt.</p>
+          <p>Unter dem folgenden Link k&ouml;nnt ihr euch das Innere der Kirche interaktiv anschauen: <a href="https://schule.erzbistum-koeln.de/ursulinenschule_koeln/gymnasium/Kirchen/Fronleichnamskirche_Panorama/Fronleichnamskirche.html">https://schule.erzbistum-koeln.de/ursulinenschule_koeln/gymnasium/Kirchen/Fronleichnamskirche_Panorama/Fronleichnamskirche.html</a></p>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <h1 id="feier" class="title is-1">Feier</h1>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <p>Die anschlie&szlig;ende Feier findet im Kastanienhof statt. Dieser befindet sich in K&ouml;ln-Junkersdorf. Auch hier kommt ihr ohne Auto wieder weg, da die Linie 1 unmittelbar dort f&auml;hrt.</p>
+          <p>Die Kleiderordnung ist <em>sommerlich-festlich</em>. F&uuml;hlt euch wohl, wir m&ouml;chten ein rauschendes Fest mit euch feiern.</p>
+          <p>Leider verf&uuml;gt der Kastanienhof nicht &uuml;ber zus&auml;tzliche R&auml;ume f&uuml;r Kinderbetreuung. Sollten eure Kinder dennoch mitkommen, lasst es uns so schnell wie m&ouml;glich wissen, damit wir über eine L&ouml;sung nachdenken k&ouml;nnen.</p>
+          <p>&Uuml;ber kreative Beitr&auml;ge zur Gestaltung des Abends freuen wir uns sehr. Bitte meldet Euch dahingehend bei unseren Trauzeugen <b>Anabel</b> (<a href="tel:+4915751118390">0157 511 183 90</a> (nur Whatsapp) / <a href="mailto:fischeranabel@gmail.com">fischeranabel@gmail.com</a>) oder <b>Martin</b> (<a href="tel:+4917620521670">0176 205 216 70</a> / <a href="mailto:mathia.martin@gmail.com">mathia.martin@gmail.com</a>).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h1 id="anreise" class="title is-1">Anreise/&Uuml;bernachtung</h1>
+      <div class="columns">
+        <div class="column">
+          <div id="map"></div>
+        </div>
+        <div class="column">
+          <div class="content">
+            <h4 class="title is-4">M&ouml;gliche Hotels</h4>
+            <ul>
+              <li><a href="https://hotel-koeln-junkersdorf.dorint.com/de/">Dorint Hotel K&ouml;ln Junkersdorf</a>, Aachener Stra&szlig;e 1059/1061 (10 Gehminuten vom Kastanienhof)</li>
+              <li><a href="https://www.hostel.ag/">Hostel K&ouml;ln</a>, Marsilstein 49 (5 Gehminuten zur Haltestelle Rudolfplatz)</li>
+            </ul>
+            <h4 class="title is-4">Linie 1</h4>
+            <p>Die Linie 1 verbindet uns (Haltestelle Br&uuml;ck Mauspfad), die Innenstadt (z.B. Haltestelle Rudolfplatz) und unsere Feier-Location (Haltestelle Junkersdorf Mohnweg) miteinander. Den Linienplan findet ihr <a href="https://www.kvb.koeln/haltestellen/download/mfp/001_mf.pdf">hier</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h1 id="geschenke" class="title is-1">Geschenke</h1>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <div class="content">
+            <p>Wir wohnen derzeit in einem doch sehr leeren Haus. Tats&auml;chlich gibt es einige Dinge, die uns noch fehlen. Wir haben eine Liste an Dingen erstellt, &uuml;ber die wir uns sehr freuen w&uuml;rden. W&auml;hlt einfach aus was ihr schenken wollt und es wird von der Liste gestrichen.</p>
+            <p>Alternativ haben wir auch nichts gegen einen kleinen Zuschuss f&uuml;r unsere Flitterwochen nach Malta.</p>
+            <form>
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox"> Geschenk 1
+                  </label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox"> Geschenk 2
+                  </label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <button class="button is-warning" type="button">Das will ich schenken</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h1 id="rsvp" class="title is-1">RSVP</h1>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <div class="content">
+            <p>Bitte meldet euch bis zum <b>14. M&auml;rz</b> zur&uuml;ck. Wir freuen uns sehr auf euch!</p>
+            <form>
+              <div class="field">
+                <label class="label">Name(n)</label>
+                <div class="control">
+                  <input class="input" type="text">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox"> Dabei beim Polterabend
+                  </label>
+                </div>
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox"> Dabei bei der Trauung
+                  </label>
+                </div>
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox"> Dabei bei der Feier
+                  </label>
+                </div>
+                <div class="control">
+                    <label class="checkbox">
+                      <input id="absage" type="checkbox" data-target="puppy""> Ich muss leider absagen
+                    </label>
+                  </div>
+              </div>
+              <img id="puppy" src="absage.jpg" class="is-hidden">
+              <div class="field">
+                <label class="label">Fahrt von Trauung zur Feier</label>
+                <div class="control">
+                  <div class="select">
+                    <select>
+                      <option>Die coole Variante mit Katharina &amp; Stephan</option>
+                      <option>Meine/unsere wahrscheinlich nicht ganz so coole Variante</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox"> Ich/wir bringe(n) Kinder mit
+                  </label>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Kommentare (z.B. VeganerIn, ich w&uuml;rde gern bei K&ouml;lnerInnen unterkommen, ich kann G&auml;ste aufnehmen, etc.)</label>
+                <div class="control">
+                  <textarea class="textarea"></textarea>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Das Lied das mich jedes Mal auf die Tanzfl&auml;che bringt</label>
+                <div class="control">
+                  <input class="input" type="text">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1 amp">&amp;</h1>
+      </div>
+    </div>
+  </section>
+  
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+  <script src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      if ($navbarBurgers.length > 0) {
+        $navbarBurgers.forEach(el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+          });
+        });
+      }
+      const absage = document.querySelector('#absage');
+      absage.addEventListener('change', () => {
+        const target = absage.dataset.target;
+        const $target = document.getElementById(target);
+        if (!absage.checked) {
+          $target.classList.add('is-hidden');
+        } else {
+          $target.classList.remove('is-hidden');
+        }
+      });
+    });
+
+    var layer = new L.StamenTileLayer('toner');
+    var map = new L.Map('map', {
+      center: new L.LatLng(50.9463472, 6.9581229),
+      zoom: 11
+    });
+    map.addLayer(layer);
+    var polterabend = L.marker([50.943953, 7.085127]).addTo(map);
+    var trauung = L.marker([50.946567, 6.960333]).addTo(map);
+    var feier = L.marker([50.931662, 6.858133]).addTo(map);
+    polterabend.bindPopup('<b>Polterabend</b><br>Fasanenweg 2, Brück').openPopup();
+    trauung.bindPopup('<b>Trauung</b><br>Ursulinenkirche');
+    feier.bindPopup('<b>Feier</b><br>Kastanienhof, Junkersdorf');
+  </script>
 </body>
 </html>
