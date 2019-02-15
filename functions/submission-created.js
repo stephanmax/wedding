@@ -44,9 +44,7 @@ exports.handler = (event, context, callback) => {
 
         req.write(JSON.stringify({
           sha,
-          content: {
-            geschenke: gifts
-          },
+          content: Buffer.from(JSON.stringify({ geschenke: gifts})).toString('base64'),
           message: `Gifts chosen: ${giftIds}`
         }))
         req.end()
