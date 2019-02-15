@@ -496,7 +496,7 @@
         geschenkeJSON.geschenke.forEach(geschenk => {
           var div = document.createElement('div');
           div.classList.add('field');
-          var checkbox = '<div class="control"><label class="checkbox"><input type="checkbox" name="geschenke[]" value="' + geschenk.name + '"';
+          var checkbox = '<div class="control"><label class="checkbox"><input type="checkbox" name="geschenke[]" value="' + geschenk.id + '"';
           if (geschenk.vergeben) {
             checkbox += ' class="taken" disabled';
           }
