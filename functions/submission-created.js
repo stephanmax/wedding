@@ -35,7 +35,7 @@ exports.handler = (event, context, callback) => {
         })
 
         const req = Https.request({...options, method: 'PUT'}, res => {
-          res.on('end', callback(null, {
+          res.on('end', () => callback(null, {
             statusCode: 200,
             body: gifts
           }))
