@@ -1,1 +1,118 @@
-{"geschenke":[{"id":"0","name":"Test","link":"https://google.com","preis":"100","vergeben":true}]}
+{
+  "geschenke": [
+    {
+      "id": "0",
+      "name": "Tischkicker",
+      "link": "https://www.testberichte.de/p/maxstore-tests/leeds-kicker-testbericht.html",
+      "preis": "100-200"
+    },
+    {
+      "id": "1",
+      "name": "Besteckset, 60teilig",
+      "link": "https://porta.de/porta/p/justinus-besteck-set-60-teilig-trend-edelstahl-18-10-0128671.00",
+      "preis": "100"
+    },
+    {
+      "id": "2",
+      "name": "Salz- und Pfeffermühle",
+      "link": "https://www.figgware.com/",
+      "preis": "20"
+    },
+    {
+      "id": "3",
+      "name": "Brettchenständer",
+      "link": "https://www.karstadt.de/Kesper-Brettchenstaender-mit-6-Brettchen-FSC-Bambus/33782697.html",
+      "preis": "15"
+    },
+    {
+      "id": "4",
+      "name": "Schneidebrett",
+      "link": "https://www.karstadt.de/Kesper-Profi-Schneidebrett-FSC-Bambus/33782676.html",
+      "preis": "20"
+    },
+    {
+      "id": "5",
+      "name": "Salatschleuder",
+      "link": "https://www.gefu.com/produktwelt/gedeckter-tisch-servieren/salatschleuder-speedwing",
+      "preis": "50"
+    },
+    {
+      "id": "6",
+      "name": "Messerset",
+      "link": "https://www.karstadt.de/Zwilling-Messer-Set-FIVE-STAR-4-tlg/33782847.html",
+      "preis": "100-150"
+    },
+    {
+      "id": "7",
+      "name": "4 Porzellan-Pommesschalen",
+      "link": "https://www.karstadt.de/Galzone-Pommesschale-20-5-cm/33590952.html#start=13",
+      "preis": "15"
+    },
+    {
+      "id": "8",
+      "name": "Porzellanset, 30teilig",
+      "link": "https://www.karstadt.de/Maxwell-Williams-Porzellan-Kombi-Set-East-meets-West-30-teilig/4673835.html#q=williams%2Bgeschirr&start=7",
+      "preis": "100-150"
+    },
+    {
+      "id": "9",
+      "name": "Geschirrset",
+      "link": "https://www.karstadt.de/Kahla-Gourmet-Set-24-tlg-Zugabe/35557002.html#q=kahla%2Bgeschirr&start=2",
+      "preis": "100-150"
+    },
+    {
+      "id": "10",
+      "name": "6 Trinkgläser",
+      "link": "https://www.leonardo.de/glaeser/trinkglaeser/klare-glaeser/becher-klein-pisa.html",
+      "preis": "30"
+    },
+    {
+      "id": "11",
+      "name": "Whiskyset",
+      "link": "https://www.karstadt.de/Schott-Zwiesel-Whiskyglas-Set-3-tlg/35420558.html#q=whisky%2Bset&start=1",
+      "preis": "50"
+    },
+    {
+      "id": "12",
+      "name": "Sodastream Easy",
+      "link": "https://www.sodastream.de/produkte/wassersprudler/#easy",
+      "preis": "50"
+    },
+    {
+      "id": "13",
+      "name": "Multigrill",
+      "link": "https://www.amazon.de/DeLonghi-SW12BC-S-Sandwichmaker-Antihaftbeschichtung-Sp%C3%BClmaschinenfest/dp/B07CTZGQCZ",
+      "preis": "50-70"
+    },
+    {
+      "id": "14",
+      "name": "Toaster",
+      "link": "https://www.wmf.com/en/consumer-electrics/breakfast-appliances/toasters/toaster-wmf-bueno-pro.html",
+      "preis": "50"
+    },
+    {
+      "id": "15",
+      "name": "Beutelloser Staubsauger",
+      "link": "https://www.philips.de/c-p/FC9332_09/powerpro-compact-beutelloser-staubsauger",
+      "preis": "90"
+    },
+    {
+      "id": "16",
+      "name": "Teekanne",
+      "link": "https://www.leonardo.de/teekanne-1-2l-moon.html",
+      "preis": "35"
+    },
+    {
+      "id": "17",
+      "name": "Kohle-Kugelgrill",
+      "link": "https://www.amazon.de/Outdoorchef-Kohlegrill-Chelsea-69x75x110-18-400-02/dp/B015K4XI04/ref=sr_1_5",
+      "preis": "100-150"
+    },
+    {
+      "id": "18",
+      "name": "Topfset",
+      "link": "https://www.amazon.de/WMF-Transtherm-Edelstahl-Induktionsgeeignet-Bratentopf/dp/B07N411G4L",
+      "preis": "100-150"
+    }
+  ]
+}
