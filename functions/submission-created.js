@@ -23,7 +23,7 @@ exports.handler = (event, context, callback) => {
     
       res.on('end', () => {
         const {content} = JSON.parse(body)
-        console.log(Buffer.from(content, 'base64'))
+        console.log(Buffer.from(content, 'base64').toString('ascii'))
       })
     
       res.on('error', callback);
