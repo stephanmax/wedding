@@ -11,7 +11,8 @@ exports.handler = (event, context, callback) => {
       host: 'api.github.com',
       path: '/repos/stephanmax/wedding/contents/geschenke.json',
       headers: {   
-        'Authorization': 'Basic ' + new Buffer(`${GITHUB_USERNAME}:${GITHUB_TOKEN}`).toString('base64')
+        'Authorization': 'Basic ' + new Buffer(`${GITHUB_USERNAME}:${GITHUB_TOKEN}`).toString('base64'),
+        'User-Agent': 'stephanmax'
       }   
    }
    
