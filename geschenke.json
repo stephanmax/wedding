@@ -1,0 +1,9 @@
+{
+  "geschenke": [
+    {
+      "name": "Test",
+      "link": "https://google.com",
+      "preis": "100"
+    }
+  ]
+}
