@@ -22,6 +22,7 @@ exports.handler = (event, context, callback) => {
       });
     
       res.on('end', () => {
+        console.log(body.content)
         console.log(Buffer.from(body.content, 'base64'));
       })
     
