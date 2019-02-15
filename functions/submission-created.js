@@ -20,7 +20,7 @@ exports.handler = (event, context, callback) => {
       res.on('data', data => body += data);
     
       res.on('end', () => {
-        const {content} = JSON.parse(body)
+        const {content, sha} = JSON.parse(body)
         const giftsJSON = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
 
         const gifts = giftsJSON.geschenke
@@ -34,7 +34,22 @@ exports.handler = (event, context, callback) => {
           }
         })
 
-        console.log(gifts)
+        const req = Https.request({...options, method: 'PUT'}, res => {
+          res.on('end', callback(null, {
+            statusCode: 200,
+            body: gifts
+          }))
+          res.on('error', callback);
+        })
+
+        req.write(JSON.stringify({
+          sha,
+          content: {
+            geschenke: gifts
+          },
+          message: `Gifts chosen: ${giftIds}`
+        }))
+        req.end()
       })
     
       res.on('error', callback);
