@@ -144,6 +144,10 @@
     .taken {
       text-decoration: line-through;
     }
+    .checkbox input[disabled],
+    .taken {
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
@@ -499,11 +503,11 @@
         geschenkeJSON.geschenke.forEach(geschenk => {
           var div = document.createElement('div');
           div.classList.add('field');
-          var checkbox = '<div class="control"><label class="checkbox"';
+          var checkbox = '<div class="control"><label class="checkbox';
           if (geschenk.vergeben) {
-            checkbox += ' class="taken"';
+            checkbox += ' taken';
           }
-          checkbox += '><input type="checkbox" name="geschenke[]" value="' + geschenk.id + '"';
+          checkbox += '"><input type="checkbox" name="geschenke[]" value="' + geschenk.id + '"';
           if (geschenk.vergeben) {
             checkbox += 'disabled';
           }
