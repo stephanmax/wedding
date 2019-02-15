@@ -21,10 +21,20 @@ exports.handler = (event, context, callback) => {
     
       res.on('end', () => {
         const {content} = JSON.parse(body)
-        const geschenkeJSON = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
+        const giftsJSON = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
 
-        console.log(geschenkeJSON.geschenke)
-        console.log(data)
+        const gifts = giftsJSON.geschenke
+        const giftIds = data.geschenke
+
+        giftIds.forEach(giftId => {
+          const giftIndex = gifts.findIndex(gift => gift.id === giftId)
+          gifts[giftIndex] = {
+            ...gifts[giftIndex],
+            vergeben: true
+          }
+        })
+
+        console.log(gifts)
       })
     
       res.on('error', callback);
