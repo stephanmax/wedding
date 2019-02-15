@@ -15,15 +15,16 @@ exports.handler = (event, context, callback) => {
    }
    
     Https.get(options, res => {
-      var body = '';
+      let body = '';
     
-      res.on('data', data => {
-        body += data
-      });
+      res.on('data', data => body += data);
     
       res.on('end', () => {
         const {content} = JSON.parse(body)
-        console.log(Buffer.from(content, 'base64').toString('ascii'))
+        const geschenkeJSON = JSON.parse(Buffer.from(content, 'base64').toString('ascii'))
+
+        console.log(geschenkeJSON.geschenke)
+        console.log(data)
       })
     
       res.on('error', callback);
