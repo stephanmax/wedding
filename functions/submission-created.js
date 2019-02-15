@@ -3,8 +3,6 @@ const Https = require('https')
 exports.handler = (event, context, callback) => {
   const {form_name, data} = JSON.parse(event.body).payload
   const {GITHUB_USERNAME, GITHUB_TOKEN} = process.env
-  console.log(GITHUB_USERNAME)
-  console.log(GITHUB_TOKEN)
   
   if (form_name === 'geschenke') {
     const options = {
@@ -24,7 +22,7 @@ exports.handler = (event, context, callback) => {
       });
     
       res.on('end', () => {
-        console.log(body);
+        console.log(Buffer.from(body.content, 'base64'));
       })
     
       res.on('error', callback);
