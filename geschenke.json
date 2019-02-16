@@ -122,7 +122,7 @@
     },
     {
       "id": "21",
-      "name": "2 Sonos Play:1, weiß",
+      "name": "2 Sonos Play:1, wei&szlig;",
       "link": "https://www.sonos.com/en/shop/play1.html",
       "preis": "358"
     },
@@ -139,10 +139,16 @@
       "preis": "500"
     },
     {
-      "id": "23",
+      "id": "24",
       "name": "Handt&uuml;cher, Vossen oder M&ouml;ve, t&uuml;rkis und dunkelgrau",
       "link": "https://www.vossen.com/de/handtuecher/",
       "preis": "?"
+    },
+    {
+      "id": "25",
+      "name": "2 Liegest&uuml;hle f&uuml;r den Garten",
+      "link": "https://moebel.ladenzeile.de/blumfeldt-liegen/",
+      "preis": "150-200"
     }
   ]
 }
